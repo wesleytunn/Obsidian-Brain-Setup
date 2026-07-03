@@ -5,7 +5,7 @@ Turn an empty folder into an agent-ready Obsidian "second brain" with one pasted
 If you have (1) an AI agent set up (Claude Code, Codex, Gemini, Cursor, etc.) and
 (2) Obsidian installed, that is all the setup you need.
 
-## Before you start: set up an agent
+## Step 1: Set up an agent
 
 This whole system is driven by an AI agent. If you don't have one yet, set one up
 first — you'll paste the one-line vault instructions into its window and it does the
@@ -16,9 +16,9 @@ rest. Two good options:
 
 Either works, and either the **app** or the **command-line (CLI)** version is fine —
 use whichever you prefer. Once your agent is installed and you can type prompts into
-it, continue below.
+it, continue on.
 
-## Also install Obsidian
+## Step 2: Install Obsidian
 
 Obsidian is the free, local-first notes app your second brain lives in. It stores
 everything as plain markdown files in a folder on your own machine — nothing locked in
@@ -31,7 +31,7 @@ and navigate it. Download it here:
 Install it before running the setup. After the agent builds your vault, you'll open
 that folder in Obsidian (File -> Open Vault).
 
-## How to use
+## Step 3: Build your vault
 
 Open your agent (app or CLI) and paste this one line:
 
@@ -83,6 +83,46 @@ https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihg
 
 (Works in Chrome and other Chromium browsers. Optional, but it's the single biggest
 quality-of-life upgrade for keeping the vault fed.)
+
+## The three skills that run the vault
+
+Day to day, the vault is driven by three core skills. Together they let you operate,
+maintain, and learn from your second brain:
+
+- **`second-brain-ingest`** — *operate.* This is how material enters the vault. Point
+  it at a source in `raw/` (an article, PDF, note, transcript, image, or URL) and it
+  reads the source, extracts the key entities and ideas, and files them into the wiki
+  as cross-referenced pages. This is the action you run most.
+- **`second-brain-query`** — *learn from.* This is how you get value back out. Ask a
+  question and it synthesizes an answer from everything filed so far, with citations
+  back to the source pages — and files the good answers back into the wiki so the
+  next question starts from a smarter base.
+- **`second-brain-lint`** — *maintain.* This is how the vault stays healthy. Run it
+  periodically (every 10-15 ingests is a good rhythm) to catch orphan pages, dead
+  links, contradictions, and missing frontmatter before they compound into rot.
+
+The loop is simple: **ingest** sources, **query** to think with them, **lint** to keep
+the whole thing clean. Everything compounds through the wiki.
+
+## Once you're set up: recommended first moves
+
+The vault ships empty on purpose. Here's a good way to start compounding value:
+
+1. **Pick a goal.** Decide what this vault is *for* — a research topic, a project, a
+   domain you're going deep on, your health, a book you're writing. A clear goal is
+   what everything else orients around.
+2. **Have the agent write the goal into the README.** Tell the agent working in the
+   vault to add your goal to `README.md`. Every future agent session reads that file,
+   so the goal becomes durable context that steers all later work.
+3. **Fill it with secondary sources via the Web Clipper.** As you read around your
+   goal, clip articles and pages straight into `raw/`, then ingest them. This is the
+   fast way to build broad background knowledge the vault can reason over.
+4. **Add your own data as primary sources.** Drop your real project files, notes, and
+   personal material into `raw/` and ingest them too. This is what makes the vault
+   *yours* — it starts connecting your own work to everything else it has learned.
+
+From there, keep the loop turning: ingest what's new, query when you need to think,
+and lint every so often to keep it clean.
 
 ## Repository contents
 
