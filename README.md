@@ -5,7 +5,7 @@ Turn an empty folder into an agent-ready Obsidian "second brain" with one pasted
 If you have (1) an AI agent set up (Claude Code, Codex, Gemini, Cursor, etc.) and
 (2) Obsidian installed, that is all the setup you need.
 
-## Step 1: Set up an agent
+## Step 1: Set Up an Agent
 
 This whole system is driven by an AI agent. If you don't have one yet, set one up
 first — you'll paste the one-line vault instructions into its window and it does the
@@ -38,7 +38,7 @@ asks you to open a vault during first launch, and it's the same location and nam
 give the agent in Step 3 (it builds the vault right into that folder). Naming it for
 your focus now keeps everything oriented around your goal from the very first step.
 
-## Step 3: Build your vault
+## Step 3: Build Your Vault
 
 Open your agent (app or CLI) and paste this one line:
 
@@ -49,7 +49,7 @@ Fetch https://raw.githubusercontent.com/wesleytunn/Obsidian-Brain-Setup/main/SET
 The agent will ask you four short questions (vault name, location, purpose, and what
 you'd like to name the agent), then build the whole system for you.
 
-## What gets built
+## What Gets Built
 
 - **README.md** — the vault's constitution: confidentiality rules every agent must
   uphold, the ongoing-context protocol, and conventions.
@@ -73,7 +73,7 @@ you'd like to name the agent), then build the whole system for you.
 The vault starts as an operational but empty skeleton. It contains no content from
 anyone else's vault — it compounds around whatever you feed it.
 
-## Recommended: install the Obsidian Web Clipper
+## Recommended: Install the Obsidian Web Clipper
 
 The vault runs on a simple loop: sources land in `raw/`, then you ingest them. The
 fastest way to feed `raw/` from the web is the **Obsidian Web Clipper** browser
@@ -95,7 +95,7 @@ https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihg
 (Works in Chrome and other Chromium browsers. Optional, but it's the single biggest
 quality-of-life upgrade for keeping the vault fed.)
 
-## The three skills that run the vault
+## What Is a Skill?
 
 A **skill** is a reusable instruction file (plain markdown) that teaches your agent a
 repeatable workflow — think of it as a saved command. You invoke one by name: in
@@ -103,6 +103,8 @@ Claude Code, type a slash and the skill name (e.g. `/second-brain-ingest`); with
 agents (Codex, Gemini, Cursor), just ask it to run the skill by name ("run
 second-brain-ingest on raw/"). Because they're plain markdown, any agent can follow
 them — nothing is locked to one tool.
+
+## The Three Skills That Run the Vault
 
 Day to day, the vault is driven by three core skills. Together they let you operate,
 maintain, and learn from your second brain:
@@ -126,7 +128,7 @@ maintain, and learn from your second brain:
 The loop is simple: **ingest** sources, **query** to think with them, **lint** to keep
 the whole thing clean. Everything compounds through the wiki.
 
-## Once you're set up: recommended first moves
+## Once You're Set Up: Recommended First Moves
 
 The vault ships empty on purpose. Here's a good way to start compounding value:
 
@@ -146,7 +148,7 @@ The vault ships empty on purpose. Here's a good way to start compounding value:
 From there, keep the loop turning: ingest what's new, query when you need to think,
 and lint every so often to keep it clean.
 
-## Repository contents
+## Repository Contents
 
 | File | Purpose |
 |---|---|
