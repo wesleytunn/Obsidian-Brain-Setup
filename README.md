@@ -53,15 +53,13 @@ you'd like to name the agent), then build the whole system for you.
   across different agents. Capped at 200,000 characters with agent-managed compaction.
 - **AGENTS.md** (+ CLAUDE.md / GEMINI.md / .cursorrules symlinks) — agent config that
   loads automatically in every session, for every major CLI agent.
-- **Five skills** installed into the vault (`.claude/skills/`):
+- **Three skills** installed into the vault (`.claude/skills/`):
   - `second-brain-ingest` — read a source (file, URL, image) and file it into a
     cross-referenced wiki.
   - `second-brain-query` — answer questions from the wiki, with citations, and file
     good answers back.
   - `second-brain-lint` — health-check the wiki: orphans, dead links, contradictions,
     frontmatter gaps.
-  - `save` — file any good conversation or insight as a permanent wiki note.
-  - `new-skill` — let the vault grow its own new skills over time.
 - **Wiki skeleton** — `raw/` for incoming sources, `wiki/` with index, log, and hot
   cache, ready to be pointed at whatever your goal is.
 
@@ -129,4 +127,4 @@ and lint every so often to keep it clean.
 | File | Purpose |
 |---|---|
 | `SETUP.md` | The full instruction set the agent fetches and follows |
-| `skills/*/SKILL.md` | The five skills the agent installs into the new vault |
+| `skills/*/SKILL.md` | The three skills the agent installs into the new vault |
