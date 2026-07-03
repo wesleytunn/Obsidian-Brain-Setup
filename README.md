@@ -2,12 +2,25 @@
 
 Turn an empty folder into an agent-ready Obsidian "second brain" with one pasted line.
 
-If you have (1) Obsidian installed and (2) an AI CLI agent set up in your terminal
-(Claude Code, Codex, Gemini CLI, Cursor CLI, etc.), that is all the setup you need.
+If you have (1) Obsidian installed and (2) an AI agent set up (Claude Code, Codex,
+Gemini, Cursor, etc.), that is all the setup you need.
+
+## Before you start: set up an agent
+
+This whole system is driven by an AI agent. If you don't have one yet, set one up
+first — you'll paste the one-line vault instructions into its window and it does the
+rest. Two good options:
+
+- **Anthropic's Claude Code** — https://claude.com/product/claude-code
+- **OpenAI's Codex** — https://chatgpt.com/codex
+
+Either works, and either the **app** or the **command-line (CLI)** version is fine —
+use whichever you prefer. Once your agent is installed and you can type prompts into
+it, continue below.
 
 ## How to use
 
-Open your CLI agent and paste this one line:
+Open your agent (app or CLI) and paste this one line:
 
 ```
 Fetch https://raw.githubusercontent.com/wesleytunn/Obsidian-Brain-Setup/main/SETUP.md and follow its instructions exactly to set up my new Obsidian vault.
