@@ -132,16 +132,20 @@ the whole thing clean. Everything compounds through the wiki.
 
 The vault ships empty on purpose. Here's a good way to start compounding value:
 
-1. **Pick a goal.** Decide what this vault is *for* — a research topic, a project, a
+1. **Have the agent read the README and follow its rules.** Tell the agent working in
+   the vault to read `README.md` and follow the rules written there. This loads the
+   confidentiality lockdown, the ongoing-context protocol, and the conventions that
+   govern everything it does in the vault — do this before any real work.
+2. **Pick a goal.** Decide what this vault is *for* — a research topic, a project, a
    domain you're going deep on, your health, a book you're writing. A clear goal is
    what everything else orients around.
-2. **Have the agent write the goal into the README.** Tell the agent working in the
+3. **Have the agent write the goal into the README.** Tell the agent working in the
    vault to add your goal to `README.md`. Every future agent session reads that file,
    so the goal becomes durable context that steers all later work.
-3. **Fill it with secondary sources via the Web Clipper.** As you read around your
+4. **Fill it with secondary sources via the Web Clipper.** As you read around your
    goal, clip articles and pages straight into `raw/`, then ingest them. This is the
    fast way to build broad background knowledge the vault can reason over.
-4. **Add your own data as primary sources.** Drop your real project files, notes, and
+5. **Add your own data as primary sources.** Drop your real project files, notes, and
    personal material into `raw/` and ingest them too. This is what makes the vault
    *yours* — it starts connecting your own work to everything else it has learned.
 
