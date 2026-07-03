@@ -31,6 +31,13 @@ and navigate it. Download it here:
 Install it before running the setup. After the agent builds your vault, you'll open
 that folder in Obsidian (File -> Open Vault).
 
+**Make a folder for it first.** Create a new, empty folder somewhere on your machine
+and name it for whatever this vault will focus on — e.g. `Health`, `AI-Research`,
+`My-Novel`, `Competitive-Intel`. This is the folder you'll point Obsidian at when it
+asks you to open a vault during first launch, and it's the same location and name you
+give the agent in Step 3 (it builds the vault right into that folder). Naming it for
+your focus now keeps everything oriented around your goal from the very first step.
+
 ## Step 3: Build your vault
 
 Open your agent (app or CLI) and paste this one line:
@@ -72,9 +79,15 @@ The vault runs on a simple loop: sources land in `raw/`, then you ingest them. T
 fastest way to feed `raw/` from the web is the **Obsidian Web Clipper** browser
 extension. It captures the article you're reading — stripped of ads, nav, and
 clutter — and saves it straight into your vault as a clean markdown note, one click,
-no copy-paste. Configure it to drop clips into your vault's `raw/` folder and every
-page you find while browsing becomes ready-to-ingest material: hit `/second-brain-ingest`
-and it's filed into the wiki with cross-references.
+no copy-paste. Every page you find while browsing becomes ready-to-ingest material:
+hit `/second-brain-ingest` and it's filed into the wiki with cross-references.
+
+> **Important — set the clipper's save location to your vault's `raw/` folder.** The
+> setup already built that `raw/` folder for you, but the Web Clipper won't know about
+> it until you tell it. In the extension's settings, set the note-save location (the
+> vault and folder it writes to) to your vault's `raw/` directory. If clips land
+> anywhere else, `/second-brain-ingest` won't find them — `raw/` is the one place it
+> looks. Do this once and every future clip drops straight into the ingest queue.
 
 Install it here:
 https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf
@@ -84,13 +97,24 @@ quality-of-life upgrade for keeping the vault fed.)
 
 ## The three skills that run the vault
 
+A **skill** is a reusable instruction file (plain markdown) that teaches your agent a
+repeatable workflow — think of it as a saved command. You invoke one by name: in
+Claude Code, type a slash and the skill name (e.g. `/second-brain-ingest`); with other
+agents (Codex, Gemini, Cursor), just ask it to run the skill by name ("run
+second-brain-ingest on raw/"). Because they're plain markdown, any agent can follow
+them — nothing is locked to one tool.
+
 Day to day, the vault is driven by three core skills. Together they let you operate,
 maintain, and learn from your second brain:
 
 - **`second-brain-ingest`** — *operate.* This is how material enters the vault. Point
   it at a source in `raw/` (an article, PDF, note, transcript, image, or URL) and it
   reads the source, extracts the key entities and ideas, and files them into the wiki
-  as cross-referenced pages. This is the action you run most.
+  as cross-referenced pages. This is the action you run most. **Tip: feed it in
+  batches.** Rather than ingesting one file at a time, let several sources pile up in
+  `raw/` (clip or drop a batch), then invoke the skill once on the whole set — the
+  agent has far more to cross-reference and connect in a single pass, so the wiki comes
+  out richer and more interlinked than drip-feeding one source at a time.
 - **`second-brain-query`** — *learn from.* This is how you get value back out. Ask a
   question and it synthesizes an answer from everything filed so far, with citations
   back to the source pages — and files the good answers back into the wiki so the
