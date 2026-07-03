@@ -134,6 +134,28 @@ ingest. Keep it short, current, and ruthlessly pruned.
 - (none yet)
 ```
 
+Also create **`raw/README.md`** so the drop folder is self-documenting and survives
+even while empty (some tools prune empty directories):
+
+```markdown
+---
+type: meta
+title: "Raw — Incoming Sources"
+updated: {{TODAY}}
+---
+# raw/ — drop new sources here
+
+This is the vault's inbox. Put anything you want ingested here: saved web articles,
+PDFs, notes, transcripts, images, exports. The Obsidian Web Clipper browser extension
+can save web pages straight into this folder — see the vault README.
+
+Then run `/second-brain-ingest` (or ask your agent to ingest) to file the source into
+the wiki with cross-references.
+
+Rule: `raw/` is immutable. Once a source lands here it is never edited — the wiki is
+where synthesis and updates happen.
+```
+
 ---
 
 ## Step 3 — Write README.md

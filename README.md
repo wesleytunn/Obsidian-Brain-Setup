@@ -42,6 +42,22 @@ you'd like to name the agent), then build the whole system for you.
 The vault starts as an operational but empty skeleton. It contains no content from
 anyone else's vault — it compounds around whatever you feed it.
 
+## Recommended: install the Obsidian Web Clipper
+
+The vault runs on a simple loop: sources land in `raw/`, then you ingest them. The
+fastest way to feed `raw/` from the web is the **Obsidian Web Clipper** browser
+extension. It captures the article you're reading — stripped of ads, nav, and
+clutter — and saves it straight into your vault as a clean markdown note, one click,
+no copy-paste. Configure it to drop clips into your vault's `raw/` folder and every
+page you find while browsing becomes ready-to-ingest material: hit `/second-brain-ingest`
+and it's filed into the wiki with cross-references.
+
+Install it here:
+https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf
+
+(Works in Chrome and other Chromium browsers. Optional, but it's the single biggest
+quality-of-life upgrade for keeping the vault fed.)
+
 ## Repository contents
 
 | File | Purpose |
