@@ -2,8 +2,8 @@
 
 Turn an empty folder into an agent-ready Obsidian "second brain" with one pasted line.
 
-If you have (1) Obsidian installed and (2) an AI agent set up (Claude Code, Codex,
-Gemini, Cursor, etc.), that is all the setup you need.
+If you have (1) an AI agent set up (Claude Code, Codex, Gemini, Cursor, etc.) and
+(2) Obsidian installed, that is all the setup you need.
 
 ## Before you start: set up an agent
 
@@ -17,6 +17,19 @@ rest. Two good options:
 Either works, and either the **app** or the **command-line (CLI)** version is fine —
 use whichever you prefer. Once your agent is installed and you can type prompts into
 it, continue below.
+
+## Also install Obsidian
+
+Obsidian is the free, local-first notes app your second brain lives in. It stores
+everything as plain markdown files in a folder on your own machine — nothing locked in
+the cloud — and gives you linked notes, backlinks, search, and graph views over them.
+This project builds the vault (that folder) for you; Obsidian is how you read, edit,
+and navigate it. Download it here:
+
+- **Obsidian** — https://obsidian.md/download
+
+Install it before running the setup. After the agent builds your vault, you'll open
+that folder in Obsidian (File -> Open Vault).
 
 ## How to use
 
