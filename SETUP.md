@@ -9,6 +9,15 @@ Do not improvise, skip steps, or add features beyond what is written here. Where
 template appears below, reproduce it faithfully, replacing only the `{{PLACEHOLDER}}`
 fields.
 
+> **Access note (read first).** This flow assumes the repository hosting this file is
+> PUBLIC, so the user's one-line prompt and the skill downloads in Step 7 both work
+> over a plain, unauthenticated web fetch. If you could only retrieve this file
+> through an authenticated method, or a normal fetch of it returned 404, the repo is
+> private -- stop and tell the user. Every run of the public one-liner (and the Step 7
+> `curl` downloads) will fail until the repo is made public. You can still finish this
+> run using an authenticated fetch (see Step 7), but flag the visibility problem so it
+> gets fixed at the source.
+
 ## What you are building
 
 A brand-new, agent-ready Obsidian vault: an operational but empty skeleton designed
@@ -38,9 +47,11 @@ files until all four are answered.
 1. **Vault name**: "What would you like to name your vault? This becomes the folder
    name." Default: `Second Brain`
 2. **Location**: "Where should I create it? Give me a path or accept the default."
-   Default: `~/Documents`. The vault root will be `{location}/{vault name}/`. If a
-   folder already exists at that path and is not empty, stop and ask before touching
-   anything.
+   Default: `~/Documents`. This is the PARENT directory; the vault's own folder --
+   named in question 1 -- is created inside it, so the vault root will be
+   `{location}/{vault name}/`. Do NOT put the full intended vault path here and leave
+   the name blank. If a folder already exists at that path and is not empty, stop and
+   ask before touching anything.
 3. **Purpose**: "In a sentence: what is this vault for?" (Examples: AI research,
    fitness and health tracking, a novel in progress, competitive intel.) Used to
    write the vault's goal section — everything else stays general.
@@ -49,9 +60,34 @@ files until all four are answered.
    Cursor — whichever you are). This becomes your permanent signed identity in this
    vault.
 
+**Then resolve and confirm before creating anything.** Restate the fully-resolved
+absolute vault root back to the user in one line (expand `~`, join
+`{location}/{vault name}`) and get an explicit yes. Guard against two answers that
+look complete but are not:
+
+- The name answer is not an actual name (e.g. "a different name", "you pick", "call it
+  whatever") -- treat that as unanswered and ask again for a concrete word. Never
+  invent a name silently.
+- The user pasted a full path into the Location answer and left the name blank -- do
+  not guess. Read the last path segment back as the proposed vault name and confirm it
+  explicitly (e.g. "That resolves to a vault named `finance` at
+  `/Users/you/finance` -- correct?").
+
+Only proceed to Step 2 once the absolute path and the name are both confirmed.
+
 ---
 
 ## Step 2 — Create the directory skeleton
+
+**Write-access preflight (do this first).** Some environments restrict where an agent
+may write -- sandbox roots, permission hooks, or path allow-lists -- and the chosen
+vault location may not be covered. Make your first write (the vault root directory, or
+a harmless throwaway file inside it) and, if it is blocked, stop and show the user the
+exact error. Resolve it before going further: either add the confirmed vault path to
+the allow-list / permission rule, or, with the user's agreement, pick a location that
+is already writable and re-confirm the root per Step 1. Do not silently route around a
+security control, and do not continue to later steps until writes to the vault root
+actually succeed.
 
 From the confirmed vault root, create:
 
@@ -368,7 +404,7 @@ append a brief signed log entry below.
 
 ## Agent Log (newest at bottom)
 - **{{AGENT_NAME}} {{TODAY}}** — Vault initialized. Created README.md,
-  AGENT_SIGNUP.md, LIVE_CONTEXT.md, AGENTS.md, wiki skeleton, and installed 5 skills.
+  AGENT_SIGNUP.md, LIVE_CONTEXT.md, AGENTS.md, wiki skeleton, and installed 3 skills.
   Signed AGENT_SIGNUP.md as Agent 1.
 
 ## Open Threads & Next Triggers
@@ -447,8 +483,20 @@ done
 
 Verify each downloaded file is non-empty and begins with `---` (YAML frontmatter).
 If curl is unavailable or a download fails, fetch each URL with your own web-fetch
-tool and write the content to the same path. If a skill still cannot be retrieved,
-tell the user which one and continue — do not invent a substitute skill body.
+tool and write the content to the same path.
+
+If the raw download returns 404 or an auth error, the source repo is PRIVATE and no
+unauthenticated fetch (curl or web-fetch) can reach it. Use an authenticated method
+instead -- e.g. the GitHub CLI:
+
+```bash
+gh api repos/<owner>/<repo>/contents/skills/<name>/SKILL.md --jq '.content' | base64 -d \
+  > "{vault-root}/.claude/skills/<name>/SKILL.md"
+```
+
+and tell the user the repo needs to be public for the standard unauthenticated flow to
+work. If a skill still cannot be retrieved, tell the user which one and continue --
+do not invent a substitute skill body.
 
 ---
 
@@ -460,11 +508,30 @@ tell the user which one and continue — do not invent a substitute skill body.
    - Your signed agent name
    - The three installed skills
    - **Next steps for the user:**
-     - Open the folder in Obsidian: File → Open Vault → choose `{vault-root}`.
-       (Obsidian creates the `.obsidian/` folder on first open.)
+     - Open the folder in Obsidian the RIGHT way. In Obsidian: open the vault switcher
+       (bottom-left), choose "Open another vault", then "Open folder as vault", and
+       select the scaffolded folder `{vault-root}` EXACTLY. Obsidian creates the
+       `.obsidian/` folder here on first open.
+       - Do NOT use "Create new vault" pointed at `{vault-root}`. That makes Obsidian
+         create a brand-new EMPTY vault in a SUBFOLDER (`{vault-root}/{vault name}/`),
+         and you will see an empty graph with none of the scaffolded files. Symptom:
+         empty graph / no README visible = you opened the wrong folder. Fix: use
+         "Open folder as vault" and select `{vault-root}` itself, then delete the
+         stray nested subfolder.
+       - Do not end up with two vaults sharing the same folder name. Obsidian and
+         tools like Web Clipper target a vault by its name, and duplicates become
+         ambiguous (clips and links land in the wrong one).
      - Optionally install the Obsidian Web Clipper browser extension to save web
        articles straight into `raw/`:
        https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf
+       When you configure a Web Clipper template for this vault, two settings matter:
+       - "Note location" must be a path RELATIVE to the vault root -- enter `raw`, NOT
+         an absolute filesystem path like `{vault-root}/raw`. Web Clipper saves into
+         the vault you select, so an absolute path fails or creates a bogus nested
+         folder chain inside the vault.
+       - Set the "Vault" field EXPLICITLY to this vault by name; do not leave it on
+         "Last used", or clips land in whatever vault last had focus. If the vault is
+         not listed, add it first in Web Clipper's general settings.
      - Drop a first source into `raw/` (or paste a URL) and say
        `/second-brain-ingest` to start the compounding loop.
 
