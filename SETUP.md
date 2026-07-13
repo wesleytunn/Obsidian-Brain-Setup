@@ -28,6 +28,14 @@ Build the vault fully generalized. Do not copy in any content, names, projects, 
 domain material from anywhere else — the vault starts empty and belongs entirely to
 this user.
 
+**One README rule.** `README.md` at the vault root is the vault's single, permanent,
+master documentation file — every rule and every folder's purpose lives there, in its
+own section. Never create a `README.md` (or any other documentation-only file) inside
+a subfolder, no matter how natural it feels to make a new folder "self-documenting."
+This holds later too: if a future session adds a new folder to this vault (a new
+intake area, an output staging area, whatever the vault's purpose grows into), document
+it as a new section in the root `README.md`, not as a file living in that folder.
+
 ---
 
 ## Step 1 — Ask the user four questions
@@ -134,27 +142,10 @@ ingest. Keep it short, current, and ruthlessly pruned.
 - (none yet)
 ```
 
-Also create **`raw/README.md`** so the drop folder is self-documenting and survives
-even while empty (some tools prune empty directories):
-
-```markdown
----
-type: meta
-title: "Raw — Incoming Sources"
-updated: {{TODAY}}
----
-# raw/ — drop new sources here
-
-This is the vault's inbox. Put anything you want ingested here: saved web articles,
-PDFs, notes, transcripts, images, exports. The Obsidian Web Clipper browser extension
-can save web pages straight into this folder — see the vault README.
-
-Then run `/second-brain-ingest` (or ask your agent to ingest) to file the source into
-the wiki with cross-references.
-
-Rule: `raw/` is immutable. Once a source lands here it is never edited — the wiki is
-where synthesis and updates happen.
-```
+`raw/` stays undocumented at the folder level on purpose — its purpose is written into
+`README.md` §Conventions in Step 3, not into a file inside the folder itself (see the
+One README rule above). If `raw/` needs to survive being empty for some tool that
+prunes empty directories, drop an invisible `.gitkeep` inside it — never a `README.md`.
 
 ---
 
@@ -248,14 +239,22 @@ ingests. Everything compounds through the wiki.
 
 ## Conventions
 
+- `raw/` is the inbox: drop anything you want ingested here — saved web articles,
+  PDFs, notes, transcripts, images, exports. The Obsidian Web Clipper browser
+  extension can save web pages straight into this folder (point its save location at
+  it). Then run `second-brain-ingest` to file it into the wiki with cross-references.
+  `raw/` is immutable — never edit a source after it lands there; synthesis and
+  updates happen in the wiki, not here.
 - Filenames: kebab-case (`machine-learning.md`), unique across the vault.
 - Wikilinks: `[[page-name]]` matching the filename exactly.
 - Every wiki page carries YAML frontmatter: `type`, `title`, `created`, `updated`,
   `tags`, `status`.
 - Writing style: declarative present tense. Flag uncertainty with `> [!gap]` and
   conflicts with `> [!contradiction]` callouts.
-- `raw/` is immutable — never edit a source after it lands there.
 - Keep wiki pages 100-300 lines. Split anything larger.
+- This vault has exactly one `README.md`, at the vault root. If new top-level folders
+  are added later, document their purpose here as a new bullet or subsection —
+  never as a `README.md` inside the folder itself.
 
 ---
 
@@ -368,7 +367,7 @@ append a brief signed log entry below.
 
 ## Agent Log (newest at bottom)
 - **{{AGENT_NAME}} {{TODAY}}** — Vault initialized. Created README.md,
-  AGENT_SIGNUP.md, LIVE_CONTEXT.md, AGENTS.md, wiki skeleton, and installed 5 skills.
+  AGENT_SIGNUP.md, LIVE_CONTEXT.md, AGENTS.md, wiki skeleton, and installed 3 skills.
   Signed AGENT_SIGNUP.md as Agent 1.
 
 ## Open Threads & Next Triggers
