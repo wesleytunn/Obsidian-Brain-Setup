@@ -47,6 +47,26 @@ it as a new section in the root `README.md`, not as a file living in that folder
 
 ---
 
+## How the user opens the finished vault (read now; relay at the end)
+
+Obsidian must open this folder as an EXISTING vault. If it does not, the user sees
+an empty graph and thinks setup failed. Know this before you build so you can warn
+the user clearly, and LEAD your Step 8 report with it:
+
+- Correct: in Obsidian, open the vault switcher (bottom-left) -> "Open another
+  vault" -> "Open folder as vault", and select the scaffolded folder `{vault-root}`
+  EXACTLY. Obsidian creates the `.obsidian/` folder here on first open.
+- Wrong: do NOT use "Create new vault" pointed at `{vault-root}`. That creates a
+  brand-new EMPTY vault in a SUBFOLDER (`{vault-root}/{vault name}/`), showing an
+  empty graph with none of the scaffolded files. Symptom: empty graph / no README
+  visible = wrong folder opened. Fix: use "Open folder as vault" on `{vault-root}`
+  itself, then delete the stray nested subfolder.
+- Do not end up with two vaults sharing the same folder name -- Obsidian and tools
+  like Web Clipper target a vault by name, and duplicates become ambiguous (clips
+  and links land in the wrong one).
+
+---
+
 ## Step 1 — Ask the user four questions
 
 Ask these one at a time. Each has a default the user can accept. Do not create any
@@ -507,19 +527,10 @@ do not invent a substitute skill body.
    - Your signed agent name
    - The three installed skills
    - **Next steps for the user:**
-     - Open the folder in Obsidian the RIGHT way. In Obsidian: open the vault switcher
-       (bottom-left), choose "Open another vault", then "Open folder as vault", and
-       select the scaffolded folder `{vault-root}` EXACTLY. Obsidian creates the
-       `.obsidian/` folder here on first open.
-       - Do NOT use "Create new vault" pointed at `{vault-root}`. That makes Obsidian
-         create a brand-new EMPTY vault in a SUBFOLDER (`{vault-root}/{vault name}/`),
-         and you will see an empty graph with none of the scaffolded files. Symptom:
-         empty graph / no README visible = you opened the wrong folder. Fix: use
-         "Open folder as vault" and select `{vault-root}` itself, then delete the
-         stray nested subfolder.
-       - Do not end up with two vaults sharing the same folder name. Obsidian and
-         tools like Web Clipper target a vault by its name, and duplicates become
-         ambiguous (clips and links land in the wrong one).
+     - **Open the vault the RIGHT way in Obsidian -- lead with this.** Full detail is
+       in "How the user opens the finished vault" near the top of this file: use
+       "Open folder as vault" on `{vault-root}`, never "Create new vault" (which makes
+       an empty nested vault). Surface it before anything else in your report.
      - Optionally install the Obsidian Web Clipper browser extension to save web
        articles straight into `raw/`:
        https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf
